@@ -4,8 +4,10 @@ const initailState = [
     {id: -2, content: "reading a book", completed: false}
 ]
 
-export default (state = initailState, action) => {
-    switch (action) {
+// const initailState = [];
+
+const todos = (state = initailState, action) => {
+    switch (action.type) {
         case 'ADD_TODO' :
             return [
                 ...state,
@@ -15,17 +17,21 @@ export default (state = initailState, action) => {
                     completed: false
                 }
             ]
-        case 'DELELTE_TODO' :
-            return state.filter( (todo) => todo.id != action.id )
+        case 'DELETE_TODO' :
+            return state.filter(todo => todo.id !== action.id)
         case 'TOGGLE_TODO' :
-            return [
-                ...state,
-                {
-                    ...state.find((todo) => todo.id == action.id),
-                    completed: !action.completed
+            return state.map(todo => {
+                if (todo.id !== action.id) {
+                    return todo;
                 }
-            ]
+                return {
+                    ...todo,
+                    completed: !todo.completed
+                }
+            })
         default:
             return state
     }
 }
+
+export default todos;

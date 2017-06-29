@@ -1,27 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Todo from './Todo'
+import { TodoContainer } from '../containers'
+import PropTypes from 'prop-types'
 
-class TodoList extends Component{
+const TodoList = ({todos}) => (
+    <ul>
+        {
+           todos.map((todo, index) => <TodoContainer key={index} {...todo} />)
+        }
+    </ul>
+)
 
-    constructor(props){
-        super(props)
-    }
-
-    render(){
-        return (
-            <div>
-                {
-                    this.props.todos.map((todo, index) => <Todo key={index} content={todo.content} />)
-                }
-            </div>
-        )
-    }
-}
-const mapStateToProps = (state, props) => {
-    return {
-        todos: state.todos
-    }
-}
-
-export default connect(mapStateToProps)(TodoList)
+export default TodoList;

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Header = ({ children }) => (
-    <h1>
+    <h1 className="card-text">
         { children }
     </h1>
 )
