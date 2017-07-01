@@ -7,27 +7,30 @@ import { bindActionCreators } from 'redux'
 class TodoContainer extends Component{
     constructor(props){
         super(props)
-        this.state = {
-            isTodoToggled : this.props.complete
-        }
     }
 
     handleTodoDeleted = () => {
-        this.props.actions.deleteTodo(this.props.id)
+        let { id } = this.props.todo;
+        this.props.actions.deleteTodo(id)
     }
 
     handleTodoToggled = () => {
-        this.props.actions.toggleTodo(this.props.id)
-        this.setState({isTodoToggled: !this.state.isTodoToggled})
+        const { todo } = this.props
+        this.props.actions.toggleTodo({
+            ...todo,
+            completed: !todo.completed 
+        })
     }
 
     render() {
+        const { content, completed } = this.props.todo;
+
         return (
             <Todo 
-                content={this.props.content}
+                content={content}
+                isTodoToggled={ completed }
                 onTodoDeleted={ this.handleTodoDeleted }
                 onTodoToggled={ this.handleTodoToggled }
-                isTodoToggled={ this.state.isTodoToggled }
              />
         )
     }
