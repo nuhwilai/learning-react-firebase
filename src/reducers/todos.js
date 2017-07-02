@@ -1,14 +1,13 @@
 
-const initailState = [
+// const initialState = [
     // {id: -1, content: "washing a car", completed: false},
     // {id: -2, content: "reading a book", completed: false}
-]
+// ]
 
-// const initailState = [];
+const initialState = [];
 
-const todos = (state = initailState, action) => {
+const todos = (state = initialState, action) => {
     // console.log(`type = ${action.type}`, action)
-
     switch (action.type) {
         case 'ADD_TODO_SUCCESS' :
             return [

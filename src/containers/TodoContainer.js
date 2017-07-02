@@ -15,11 +15,7 @@ class TodoContainer extends Component{
     }
 
     handleTodoToggled = () => {
-        const { todo } = this.props
-        this.props.actions.toggleTodo({
-            ...todo,
-            completed: !todo.completed 
-        })
+        this.props.actions.toggleTodo(this.props.todo)
     }
 
     render() {
@@ -27,7 +23,7 @@ class TodoContainer extends Component{
 
         return (
             <Todo 
-                content={content}
+                content={ content }
                 isTodoToggled={ completed }
                 onTodoDeleted={ this.handleTodoDeleted }
                 onTodoToggled={ this.handleTodoToggled }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TodoList } from '../components'
 import * as todoActions from '../actions/todos'
+import ReactLoading from 'react-loading'
 import { bindActionCreators } from 'redux'
 
 class TodoListContainer extends Component{
@@ -20,14 +21,19 @@ class TodoListContainer extends Component{
 
     render(){
         let { todos } = this.props;
+        let { isLoading } = this.props.main;
         return (
-          <TodoList todos={todos} />
+          isLoading ? 
+            <ReactLoading type={'cylon'} color={'lightblue'} />
+            :
+            <TodoList todos={todos} />
         )
     }
 }
 const mapStateToProps = (state, props) => {
     return {
-        todos: state.todos
+        todos: state.todos,
+        main: state.main
     }
 }
 

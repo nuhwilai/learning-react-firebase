@@ -1,5 +1,13 @@
 import { services } from '../firebase'
-let nextTodoId = 0;
+import {
+    ADD_TODO_SUCCESS,
+    ADD_TODO_ERROR,
+    DELETE_TODO_SUCCESS,
+    DELETE_TODO_ERROR,
+    UPDATE_TODO_SUCCESS,
+    UPDATE_TODO_ERROR,
+    LOAD_SUCCESS
+} from '../constants/actionTypes'
 
 class Todo {
     constructor(content) {
@@ -14,12 +22,12 @@ export const addTodo = (content) => (dispatch) => (
 )
 
 export const addTodoSuccess = (todo) => ({
-        type: 'ADD_TODO_SUCCESS',
-        playload: todo
+    type: ADD_TODO_SUCCESS,
+    playload: todo
 })
 
 export const addTodoError = (error) => ({
-    type: 'ADD_TODO_ERROR',
+    type: ADD_TODO_ERROR,
     error
 })
 
@@ -29,28 +37,33 @@ export const deleteTodo = (id) => (dispatch) => (
 )
 
 export const deleteTodoSuccess = (id) => ({
-    type: 'DELETE_TODO_SUCCESS',
+    type: DELETE_TODO_SUCCESS,
     id
 })
 
 export const deleteTodoError = (error) => ({
-    type: 'DELETE_TODO_ERROR',
+    type: DELETE_TODO_ERROR,
     error
 })
 
-
 export const toggleTodo = (todo) => (dispatch) => (
-    services.update(todo)
-        .catch(error => {})
+    services.update({
+        ...todo, completed: !todo.completed
+    }).catch(error => dispatch(updateTodoError(error)))
 )
 
 export const updateTodoSuccess = (todo) => ({
-    type: 'UPDATE_TODO_SUCCESS',
+    type: UPDATE_TODO_SUCCESS,
     playload: todo
 })
 
+export const updateTodoError = (error) => ({
+    type: UPDATE_TODO_ERROR,
+    error
+})
+
 export const loadSuccess = (todos) => ({
-    type: 'LOAD_SUCCESS',
+    type: LOAD_SUCCESS,
     todos
 })
 
