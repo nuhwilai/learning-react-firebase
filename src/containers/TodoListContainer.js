@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TodoList } from '../components'
 import * as todoActions from '../actions/todos'
-import ReactLoading from 'react-loading'
+import CircularProgress from 'material-ui/CircularProgress';
 import { bindActionCreators } from 'redux'
 
 class TodoListContainer extends Component{
@@ -24,7 +24,7 @@ class TodoListContainer extends Component{
         let { isLoading } = this.props.main;
         return (
           isLoading ? 
-            <ReactLoading type={'cylon'} color={'lightblue'} />
+             <CircularProgress />
             :
             <TodoList todos={todos} />
         )

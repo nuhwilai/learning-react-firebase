@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { TodoContainer } from '../containers'
 import PropTypes from 'prop-types'
-
+import { List } from 'material-ui/List';
 const TodoList = ({todos}) => (
-    <ul>
+    <List>
         {
            todos.map((todo, index) => <TodoContainer key={index} todo={ todo } />)
         }
-    </ul>
+    </List>
 )
 
 export default TodoList;

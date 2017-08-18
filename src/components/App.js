@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Todo, Header } from './index'
 import { AddTodoContainer, TodoListContainer } from '../containers'
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import './App.css'
 
 class App extends Component {
@@ -9,15 +10,15 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="d-flex justify-content-center">
-          <div className="card w-30">
-              <div className="card-block">
-                <Header>Simple Todo</Header>
-                <AddTodoContainer/>
-                <TodoListContainer/>
-              </div>
-          </div>
-      </div>
+      <Card>
+          <CardTitle style={{textAlign: 'center'}}>
+            <Header>Simple Todo</Header>
+            <AddTodoContainer style={{textAlign: 'center'}}/>
+          </CardTitle>
+          <CardText>
+            <TodoListContainer/>
+          </CardText>
+      </Card>
     );
   }
 }
