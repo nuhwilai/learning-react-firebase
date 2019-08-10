@@ -6,7 +6,6 @@ import configureStore from './stores/configureStore';
 import registerServiceWorker from './registerServiceWorker';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 ReactDOM.render(
   <Provider store={configureStore()}>
@@ -17,4 +16,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 registerServiceWorker();
-injectTapEventPlugin();
