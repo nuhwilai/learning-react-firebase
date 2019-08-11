@@ -1,13 +1,21 @@
 import React from 'react';
 import { List } from 'material-ui/List';
+import Todo from './Todo';
+import useTodoListHandler from '../hooks/useTodoListHandler';
+import { CircularProgress } from 'material-ui';
 
-import TodoContainer from '../containers/TodoContainer';
-const TodoList = ({ todos }) => (
-  <List>
-    {todos.map((todo, index) => (
-      <TodoContainer key={index} todo={todo} />
-    ))}
-  </List>
-);
+const TodoList = () => {
+  const { todos, isLoading } = useTodoListHandler();
+
+  return isLoading ? (
+    <CircularProgress />
+  ) : (
+    <List>
+      {todos.map((todo, index) => (
+        <Todo key={index} todo={todo} />
+      ))}
+    </List>
+  );
+};
 
 export default TodoList;
