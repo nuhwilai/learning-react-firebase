@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
-import { Todo, Header } from './index'
-import { AddTodoContainer, TodoListContainer } from '../containers'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import './App.css'
+import React from 'react';
+import { Header } from './index';
 
-class App extends Component {
-  constructor(props){
-    super(props);
-  }
-  render() {
-    return (
-      <Card>
-          <CardTitle style={{textAlign: 'center'}}>
-            <Header>Simple Todo</Header>
-            <AddTodoContainer style={{textAlign: 'center'}}/>
-          </CardTitle>
-          <CardText>
-            <TodoListContainer/>
-          </CardText>
-      </Card>
-    );
-  }
+import { Card, CardTitle, CardText } from 'material-ui/Card';
+
+import AddTodo from './AddTodo';
+import TodoList from './TodoList';
+
+export default function App() {
+  return (
+    <Card>
+      <CardTitle style={{ textAlign: 'center' }}>
+        <Header>Simple Todo</Header>
+        <AddTodo style={{ textAlign: 'center' }} />
+      </CardTitle>
+      <CardText>
+        <TodoList />
+      </CardText>
+    </Card>
+  );
 }
-export default App;
